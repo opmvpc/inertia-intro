@@ -3,6 +3,8 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\AuthorController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -21,4 +23,10 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+
+    // Routes pour les livres
+    Route::resource('books', BookController::class);
+
+    // Routes pour les auteurs
+    Route::resource('authors', AuthorController::class);
 });
