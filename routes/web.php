@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -29,4 +30,8 @@ Route::middleware([
 
     // Routes pour les auteurs
     Route::resource('authors', AuthorController::class);
+
+    Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::put('users/{user}', [UserController::class, 'update'])->name('users.update');
+    Route::put('users/{user}/upload-avatar', [UserController::class, 'avatar'])->name('users.avatar');
 });
